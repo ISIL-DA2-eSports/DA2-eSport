@@ -574,3 +574,18 @@ SELECT JUGADOR.*, EQUIPO.NomEquipo
 
 
 --EXEC ListarJugador
+GO
+
+CREATE PROCEDURE ConsultarHeroeAtributo
+@Atributo varchar(50)
+AS
+Select idHeroe, NomHeroe,Tipo,Complejidad
+FROM HEROE WHERE Atributo = @Atributo
+
+CREATE PROCEDURE ConsultarFechaTorneo
+@FechaIni datetime,
+@FechaFin datetime
+AS
+
+Select NomTorneo, OrgTorneo,PaisTorneo,LugarTorneo
+FROM TORNEO WHERE FechaInicioTorneo between @FechaIni and @FechaFin
