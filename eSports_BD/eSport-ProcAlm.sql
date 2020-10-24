@@ -589,3 +589,14 @@ AS
 
 Select NomTorneo, OrgTorneo,PaisTorneo,LugarTorneo
 FROM TORNEO WHERE FechaInicioTorneo between @FechaIni and @FechaFin
+
+CREATE PROCEDURE RankingEquiposPorTorneo
+@IdTorneo int
+AS
+SELECT DETALLE_EQUIPO.Puesto, EQUIPO.NomEquipo, EQUIPO.PaisEquipo,  DETALLE_EQUIPO.Victorias, DETALLE_EQUIPO.Derrotas
+FROM DETALLE_EQUIPO
+INNER JOIN EQUIPO ON 
+	DETALLE_EQUIPO.IdEquipo = EQUIPO.IdEquipo
+WHERE IdTorneo = @IdTorneo
+ORDER BY DETALLE_EQUIPO.Puesto
+go
